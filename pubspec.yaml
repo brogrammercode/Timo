@@ -28,6 +28,7 @@ dependencies:
   connectivity_plus: ^7.1.1
   flutter_background_service: ^5.1.0
   flutter_local_notifications: ^21.0.0
+  wakelock_plus: ^1.5.2
 
 dev_dependencies:
   flutter_test:

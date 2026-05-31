@@ -26,5 +26,18 @@ class HistoryCubit extends Cubit<HistoryState> {
       )),
     );
   }
+
+  Future<void> deleteSession(String sessionId) async {
+    final result = await _historyRepo.deleteSession(sessionId);
+    result.fold(
+      (failure) {
+        // Optionally handle failure (e.g. emit error state)
+      },
+      (_) {
+        final newSessions = state.sessions.where((s) => s.id != sessionId).toList();
+        emit(state.copyWith(sessions: newSessions));
+      },
+    );
+  }
 }
 

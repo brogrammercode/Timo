@@ -36,5 +36,18 @@ class HistoryRepo {
           .toList();
     });
   }
+
+  TaskResult<void> deleteSession(String sessionId) async {
+    return tryCatchAsync(() async {
+      final user = _auth.currentUser;
+      if (user == null) {
+        throw const AuthException('User not authenticated');
+      }
+      await _firestore
+          .collection(FirebaseConstants.sessionsCollection)
+          .doc(sessionId)
+          .delete();
+    });
+  }
 }
 
